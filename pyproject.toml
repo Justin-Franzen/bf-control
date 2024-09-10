@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "bf-control"
+version = "0.1.0"
+description = ""
+authors = ["Justin Franzen <justinafranzen@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+nicegui = "^2.1.0"
+pythonnet = "^3.0.3"
+pywebview = "^5.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
