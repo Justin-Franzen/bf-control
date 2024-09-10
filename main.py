@@ -9,10 +9,10 @@ CONFIG_FILE = Path.home().joinpath("bfcontrol.json")
 
 class Lights:
     def __init__(self, config):
-        self.brightness = 100.0
+        self.brightness = 0.0
         self._urls = []
         self._headers = {
-            "Authorization": config["auth_header"],
+            "Authorization": "Basic "+config["auth_header"],
             "Accept": "application/json",
         }
         self._timeout = aiohttp.ClientTimeout(total=5)
@@ -33,7 +33,7 @@ class Lights:
     async def _update_post_call(self, session, url):
         async with session.post(
             url,
-            json={"value": self.brightness},
+            json={"value": str(self.brightness)},
             verify_ssl=False,
             headers=self._headers,
             timeout=self._timeout,
