@@ -12,6 +12,10 @@ pywebview = "^5.2"
 
 [tool.poetry.dev-dependencies]
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+pyinstaller = "^6.10.0"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
