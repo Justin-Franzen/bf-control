@@ -12,6 +12,28 @@ class Lights:
         self.call_update()
     def call_update(self):
         print("update: " + str(self.brightness))
+    
+    value = "60.0"
+    headers = {
+        "Authorization": "1234",
+        "Accept": "application/json"
+        }
+    
+    url_list = ['https://192.168.1.135/api/rest/v1/protocols/bacnet/local/objects/analog-value/355210/properties/present-value',
+                'https://192.168.1.135/api/rest/v1/protocols/bacnet/local/objects/analog-value/102611/properties/present-value']
+    
+    
+    async def fetch(session, url):
+        async with session.post(url,json={"value": value}, verify_ssl=False, headers=headers) as response:
+            print("Status:", response.status)
+            print("Content-type:", response.headers['content-type'])
+    
+    
+    async def fetch_all(urls, loop):
+        async with aiohttp.ClientSession(loop=loop) as session:
+            results = await asyncio.gather(*[fetch(session, url) for url in urls], return_exceptions=True)
+            return results
+    
 
 class Settings:
     def __init__(self):
